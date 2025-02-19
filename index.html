@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Phong Thủy Nhà Ở</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f0f2f5;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2d3436;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .color-box {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            margin: 5px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Xem Hướng Nhà Hợp Phong Thủy</h1>
+    
+    <div class="form-group">
+        <label>Họ và tên:</label>
+        <input type="text" id="name">
+    </div>
+    
+    <div class="form-group">
+        <label>Năm sinh:</label>
+        <input type="number" id="birthYear">
+    </div>
+    
+    <div class="form-group">
+        <label>Giới tính:</label>
+        <select id="gender">
+            <option value="male">Nam</option>
+            <option value="female">Nữ</option>
+        </select>
+    </div>
+    
+    <button onclick="calculate()">Xem Kết Quả</button>
+    
+    <div id="result" class="result" style="display: none;">
+        <h2>Kết quả phong thủy</h2>
+        <p id="direction"></p>
+        <div id="colors"></div>
+        <p id="tips"></p>
+    </div>
+
+    <script>
+        const fengShuiData = {
+            "Tây Tứ Mệnh": {
+                directions: ["Tây", "Tây Bắc", "Tây Nam", "Đông Bắc"],
+                colors: ["#FFFFFF", "#FFD700", "#808080", "#8B4513"],
+                tips: "Nên dùng đồ nội thất hình vuông/chữ nhật, tránh cây cảnh lá nhọn"
+            },
+            "Đông Tứ Mệnh": {
+                directions: ["Đông", "Đông Nam", "Nam", "Bắc"],
+                colors: ["#228B22", "#00008B", "#4B0082", "#00CED1"],
+                tips: "Ưu tiên vật phẩm bằng gỗ và nước, treo tranh phong cảnh"
+            }
+        };
+
+        function calculate() {
+            // Lấy dữ liệu từ form
+            const birthYear = parseInt(document.getElementById("birthYear").value);
+            const gender = document.getElementById("gender").value;
+
+            // Tính toán số mệnh
+            const lastTwo = birthYear % 100;
+            let sum = Math.floor(lastTwo / 10) + (lastTwo % 10);
+            sum = sum >= 10 ? Math.floor(sum / 10) + (sum % 10) : sum;
+            
+            let resultNumber = gender === 'male' ? (10 - sum) : (5 + sum);
+            if(resultNumber > 9) resultNumber = Math.floor(resultNumber / 10) + (resultNumber % 10);
+
+            // Xác định nhóm
+            const isTayTu = [2,5,6,7,8].includes(resultNumber);
+            const group = isTayTu ? "Tây Tứ Mệnh" : "Đông Tứ Mệnh";
+            
+            // Hiển thị kết quả
+            const resultDiv = document.getElementById("result");
+            resultDiv.style.display = "block";
+            
+            document.getElementById("direction").textContent = 
+                `Hướng hợp: ${fengShuiData[group].directions.join(", ")}`;
+            
+            document.getElementById("tips").textContent = 
+                `Lời khuyên: ${fengShuiData[group].tips}`;
+            
+            // Hiển thị màu sắc
+            const colorContainer = document.getElementById("colors");
+            colorContainer.innerHTML = fengShuiData[group].colors
+                .map(color => `<div class="color-box" style="background: ${color}"></div>`)
+                .join("");
+        }
+    </script>
+</body>
+</html>
