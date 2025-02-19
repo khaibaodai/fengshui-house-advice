@@ -24,10 +24,10 @@
         /* Banner */
         .banner {
             width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin: 15px 0 25px;
         }
 
         /* Form */
@@ -84,16 +84,23 @@
 
         .zalo-btn {
             background: #0068ff;
+            color: #fff !important;
+            border: 2px solid #fff;
+            border-radius: 30px !important;
+            padding: 12px 25px;
             display: flex;
             align-items: center;
             gap: 10px;
             text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 3px 6px rgba(0,104,255,0.2);
         }
 
-        .zalo-icon {
-            width: 24px;
-            height: 24px;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTM0Ljg1IDguMzJDMzAuNiA0LjA2IDI0Ljg2IDEuNjcgMTkgMS42NyA5LjU1IDEuNjcgMS43IDkuNTIgMS43IDE5YzAgMi4yMi4zNiA0LjM4IDEuMDcgNi40M0w0IDM1bDkuNTctMi43N2MyLjA1Ljc0IDQuMjMgMS4xMiA2LjQzIDEuMTIgOS40NSAwIDE3LjMtNy44NSAxNy4zLTE3LjMgMC01Ljg2LTIuMzktMTEuNi02LjQ1LTE1LjYzek0yMi4xIDI3LjA4aC0yLjQ0di0yLjQ1aDIuNDR2Mi40NXptNC45IDBoLTIuNDR2LTIuNDVoMi40NHYyLjQ1em00Ljg4IDBoLTIuNDR2LTIuNDVoMi40NHYyLjQ1em0tOS43Ni00Ljkydi0uMDhjLS4yOC0yLjQyLTIuNC00LjM0LTQuOTQtNC4zNC0yLjkyIDAtNS4zIDIuMzgtNS4zIDUuMzIgMCAuNTUuNDUgMS4wMiAxLjAyIDEuMDIuNTcgMCAxLjAyLS40NyAxLjAyLTEuMDIgMC0xLjggMS40Ni0zLjI4IDMuMjYtMy4yOCAxLjQyIDAgMi42NSAxLjE2IDIuOSAyLjYydjEuMDRjMCAuNTYuNDUgMS4wMiAxLjAyIDEuMDJoMS4wMmMuNTcgMCAxLjAyLS40NiAxLjAyLTEuMDJ6Ii8+PC9zdmc+') no-repeat center;
+        .zalo-btn:hover {
+            background: #0051cc;
+            border-color: #e0e0e0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,104,255,0.3);
         }
 
         /* Kết quả */
@@ -154,7 +161,7 @@
 </head>
 <body>
     <!-- Banner -->
-    <img src="https://drive.google.com/uc?export=view&id=1EZJNXxTZGrZ3BTyYkkkK7iQwXLSUGeZS" 
+     <img src="https://drive.google.com/uc?export=view&id=1EZJNXxTZGrZ3BTyYkkkK7iQwXLSUGeZS" 
          class="banner" 
          alt="Banner phong thủy">
 
@@ -162,18 +169,18 @@
     <div class="form-container">
         <div class="input-group">
             <label>Họ và tên</label>
-            <input type="text" id="name" placeholder="Nhập họ tên...">
+            <input type="text" id="name" placeholder="Vũ Trọng Khải">
         </div>
 
         <div class="input-group">
             <label>Năm sinh</label>
-            <input type="number" id="birthYear" placeholder="VD: 1990">
+            <input type="number" id="birthYear" placeholder="1993">
         </div>
 
         <div class="input-group">
             <label>Giới tính</label>
             <select id="gender">
-                <option value="male">Nam</option>
+                <option value="male" selected>Nam</option>
                 <option value="female">Nữ</option>
             </select>
         </div>
@@ -182,7 +189,7 @@
             <button onclick="calculate()">XEM NGAY</button>
             <a href="https://zalo.me/0902798800" class="zalo-btn button">
                 <div class="zalo-icon"></div>
-                Tư vấn Zalo
+                <span style="color: white">Tư vấn Zalo</span>
             </a>
         </div>
     </div>
